@@ -1,0 +1,60 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+table.myletters {
+	width:100%;
+}
+table.myletters td {
+	width:100px;
+	height:100px;
+	position: relative;
+	border: 1px solid blue;
+	margin: 12px;
+	display: table;
+	float: left;
+}
+[data-lettre] {
+	position:relative;
+}
+.mot {
+	position:absolute;
+	bottom:0;
+}
+.mot {
+	position: absolute;
+	bottom: -9px;
+	background: cadetblue;
+	border: 1px solid blue;
+	border-radius: 777777777777777777777777777px;
+	text-align: center;
+	left: 0;
+	right: 0;
+	width: fit-content;
+	margin: auto;
+}
+.lettre {
+	font-size: 44px;
+	line-height: 44px;
+	font-weight: 900;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.nombre {
+	position: absolute;
+	bottom: 0;
+	font-size: 28px;
+	line-height: 61px;
+}

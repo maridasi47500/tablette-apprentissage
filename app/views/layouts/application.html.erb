@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hellothere</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <%= yield %>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td onclick="speak(this.dataset.lettre);" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+
+
+
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td onclick="speak(this.dataset.mot);" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+  </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td onclick="speak(this.dataset.nombre);" data-nombre="<%=i*5+j+1%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+  </div>
+  <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">poésies </div>
+  <div class="tab-pane fade" id="pills-hey" role="tabpanel" aria-labelledby="pills-hey-tab" tabindex="0">écrire les mots </div>
+  <div class="tab-pane fade" id="pills-examen" role="tabpanel" aria-labelledby="pills-examen-tab" tabindex="0">examen</div>
+  <div class="tab-pane fade" id="pills-jeu" role="tabpanel" aria-labelledby="pills-jeu-tab" tabindex="0">jeu</div>
+  <div class="tab-pane fade" id="pills-solve" role="tabpanel" aria-labelledby="pills-solve-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td onclick="this.dataset.nombre === $('[data-monnombre]')[0].dataset.monnombre ? speak('juste') : speak('faux');" data-nombre="<%=i*5+j+1%>" data-q="<%=hey ? @solve[:"#{i*5+j+1}"] : ""%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+
+  </div>
+  <div class="tab-pane fade" id="pills-chanson" role="tabpanel" aria-labelledby="pills-chanson-tab" tabindex="0">chanson</div>
+</div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+      alphabet
+
+
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">entendre les mots</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">entendre les chiffres</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>poésies</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-hey-tab" data-bs-toggle="pill" data-bs-target="#pills-hey" type="button" role="tab" aria-controls="pills-hey" aria-selected="false">ecrire les mots</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-examen-tab" data-bs-toggle="pill" data-bs-target="#pills-examen" type="button" role="tab" aria-controls="pills-examen" aria-selected="false">examen</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-jeu-tab" data-bs-toggle="pill" data-bs-target="#pills-jeu" type="button" role="tab" aria-controls="pills-jeu" aria-selected="false">jeu</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button data-min="1" data-max="10" onclick="this.dataset.monnombre=(Math.floor(Math.random() * (Number(this.dataset.max) - Number(this.dataset.min) + 1) + Number(this.dataset.min)));speak($('[data-q][data-nombre='+this.dataset.monnombre+']')[0].dataset.q);" class="nav-link" id="pills-solve-tab" data-bs-toggle="pill" data-bs-target="#pills-solve" type="button" role="tab" aria-controls="pills-solve" aria-selected="false">exemple je résous</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-chanson-tab" data-bs-toggle="pill" data-bs-target="#pills-chanson" type="button" role="tab" aria-controls="pills-chanson" aria-selected="false">chanson</button>
+  </li>
+</ul>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="/hey.js"></script>
+
+  </body>
+</html>
