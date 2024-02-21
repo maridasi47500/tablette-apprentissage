@@ -58,3 +58,10 @@ table.myletters td {
 	font-size: 28px;
 	line-height: 61px;
 }
+.Mypic {
+	position: absolute;
+	width: 58px;
+	height: 58px;
+	right: 1px;
+	top: 1px;
+}

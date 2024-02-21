@@ -22,6 +22,7 @@
           <%l.each_with_index do |hey,j|%>
             <td onclick="speak(this.dataset.lettre);" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
               <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
               <span class="nombre"><%=i*5+j+1%></span>
               <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
             </td>
@@ -43,6 +44,7 @@
           <%l.each_with_index do |hey,j|%>
             <td onclick="speak(this.dataset.mot);" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
               <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
               <span class="nombre"><%=i*5+j+1%></span>
               <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
             </td>
@@ -61,6 +63,7 @@
           <%l.each_with_index do |hey,j|%>
             <td onclick="speak(this.dataset.nombre);" data-nombre="<%=i*5+j+1%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
               <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
               <span class="nombre"><%=i*5+j+1%></span>
               <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
             </td>
@@ -71,18 +74,80 @@
       </table>
 
   </div>
-  <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">poésies </div>
-  <div class="tab-pane fade" id="pills-hey" role="tabpanel" aria-labelledby="pills-hey-tab" tabindex="0">écrire les mots </div>
+  <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td class="lirelespoems" data-poem="<%=hey ? @poems[:"#{hey.downcase}"] : ""%>"  data-nombre="<%=i*5+j+1%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+
+
+
+
+  </div>
+  <div class="tab-pane fade" id="pills-hey" role="tabpanel" aria-labelledby="pills-hey-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td class="lirelesmots" data-nombre="<%=i*5+j+1%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+
+  </div>
   <div class="tab-pane fade" id="pills-examen" role="tabpanel" aria-labelledby="pills-examen-tab" tabindex="0">examen</div>
-  <div class="tab-pane fade" id="pills-jeu" role="tabpanel" aria-labelledby="pills-jeu-tab" tabindex="0">jeu</div>
+  <div class="tab-pane fade" id="pills-jeu" role="tabpanel" aria-labelledby="pills-jeu-tab" tabindex="0">
+      <table class="myletters">
+
+      <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
+        <tr>
+          <%l.each_with_index do |hey,j|%>
+            <td onclick="" class="Jeu" data-nombre="<%=i*5+j+1%>" data-jeu="where is the <%=hey ? @alphabet[:"#{hey.downcase}"] : ""%> ?" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+              <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
+              <span class="nombre"><%=i*5+j+1%></span>
+              <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
+            </td>
+          <%end%>
+
+        </tr>
+      <%end%>
+      </table>
+
+
+
+  </div>
   <div class="tab-pane fade" id="pills-solve" role="tabpanel" aria-labelledby="pills-solve-tab" tabindex="0">
       <table class="myletters">
 
       <%("A".."Z").to_a.in_groups_of(5).each_with_index do |l,i|%>
         <tr>
           <%l.each_with_index do |hey,j|%>
-            <td onclick="this.dataset.nombre === $('[data-monnombre]')[0].dataset.monnombre ? speak('juste') : speak('faux');" data-nombre="<%=i*5+j+1%>" data-q="<%=hey ? @solve[:"#{i*5+j+1}"] : ""%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
+            <td onclick="" class="Hellothere" data-nombre="<%=i*5+j+1%>" data-q="<%=hey ? @solve[:"#{i*5+j+1}"] : ""%>" data-mot="<%=hey ? @alphabet[:"#{hey.downcase}"] : ""%>" data-lettre="<%=hey%>">
               <span class="lettre" style="color:<%=hey && hey.vowels.length > 0 ? "red" : "blue"%>;"><%=hey%></span>
+              <%=hey ? image_tag(asset_path(@alphabet[:"#{hey.downcase}"]), class: "Mypic") : ""%>
               <span class="nombre"><%=i*5+j+1%></span>
               <span class="mot"><%=hey ? @alphabet[:"#{hey.downcase}"] : ""%></span>
             </td>
@@ -111,7 +176,7 @@
     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">entendre les chiffres</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" disabled>poésies</button>
+    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">poésies</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-hey-tab" data-bs-toggle="pill" data-bs-target="#pills-hey" type="button" role="tab" aria-controls="pills-hey" aria-selected="false">ecrire les mots</button>
@@ -120,10 +185,10 @@
     <button class="nav-link" id="pills-examen-tab" data-bs-toggle="pill" data-bs-target="#pills-examen" type="button" role="tab" aria-controls="pills-examen" aria-selected="false">examen</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-jeu-tab" data-bs-toggle="pill" data-bs-target="#pills-jeu" type="button" role="tab" aria-controls="pills-jeu" aria-selected="false">jeu</button>
+    <button data-min="1" data-max="26" id="jeu" onclick="this.dataset.jeunombre=(Math.floor(Math.random() * (Number(this.dataset.max) - Number(this.dataset.min) + 1) + Number(this.dataset.min)));speak($('[data-jeu][data-nombre='+this.dataset.jeunombre+']')[0].dataset.jeu);"  class="nav-link" id="pills-jeu-tab" data-bs-toggle="pill" data-bs-target="#pills-jeu" type="button" role="tab" aria-controls="pills-jeu" aria-selected="false">jeu</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button data-min="1" data-max="10" onclick="this.dataset.monnombre=(Math.floor(Math.random() * (Number(this.dataset.max) - Number(this.dataset.min) + 1) + Number(this.dataset.min)));speak($('[data-q][data-nombre='+this.dataset.monnombre+']')[0].dataset.q);" class="nav-link" id="pills-solve-tab" data-bs-toggle="pill" data-bs-target="#pills-solve" type="button" role="tab" aria-controls="pills-solve" aria-selected="false">exemple je résous</button>
+    <button data-min="1" data-max="26" id="exemplejeresous" onclick="this.dataset.monnombre=(Math.floor(Math.random() * (Number(this.dataset.max) - Number(this.dataset.min) + 1) + Number(this.dataset.min)));speak($('[data-q][data-nombre='+this.dataset.monnombre+']')[0].dataset.q);" class="nav-link" id="pills-solve-tab" data-bs-toggle="pill" data-bs-target="#pills-solve" type="button" role="tab" aria-controls="pills-solve" aria-selected="false">exemple je résous</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-chanson-tab" data-bs-toggle="pill" data-bs-target="#pills-chanson" type="button" role="tab" aria-controls="pills-chanson" aria-selected="false">chanson</button>
