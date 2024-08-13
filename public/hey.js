@@ -1,4 +1,5 @@
 const synth = window.speechSynthesis;
+var utterThis = new SpeechSynthesisUtterance("hello");
 let voices = [];
   voices = synth.getVoices().sort(function (a, b) {
     const aname = a.name.toUpperCase();
@@ -15,12 +16,17 @@ let voices = [];
 
 function speak(myvalue,rate=1) {
   if (synth.speaking) {
+	  synth.cancel();
     console.error("speechSynthesis.speaking");
-    return;
+	  //return;
   }
 
   if (myvalue !== "") {
-    const utterThis = new SpeechSynthesisUtterance(myvalue);
+    utterThis = new SpeechSynthesisUtterance(myvalue);
+    utterThis.onboundary = function (event) {
+        console.log(myvalue.substr(event.charIndex) + '<br />');
+        document.getElementById('speak').innerHTML=(myvalue.substr(event.charIndex) + '<br />');
+    };
 
     utterThis.onend = function (event) {
       console.log("SpeechSynthesisUtterance.onend");
@@ -30,10 +36,11 @@ function speak(myvalue,rate=1) {
       console.error("SpeechSynthesisUtterance.onerror");
     };
 
+
     //const selectedOption =
      // "French (France)";
     const selectedOption =
-      "English (Great Britain)";
+      "English (United States)";
 
 
     for (let i = 0; i < voices.length; i++) {
@@ -87,6 +94,8 @@ $(function(){
 		        if (window.resous.length === 0){
                              window.resous="azertyuiopqsdfghjklmwxcvbn".split("");
 		        }
+			//jeu.dataset.jeunombre=$("[data-jeu][data-lettre="+window.Jeu[Math.floor(Math.random() * (window.Jeu.length - 1 + 1) + 1)].toUpperCase()+"]")[0].dataset.nombre;
+			//speak($('[data-jeu][data-nombre='+jeu.dataset.jeunombre+']')[0].dataset.jeu);
 			exemplejeresous.dataset.monnombre=(Math.floor(Math.random() * (window.resous.length - 1 + 1) + 1));
 			speak($('[data-q][data-nombre='+exemplejeresous.dataset.monnombre+']')[0].dataset.q);
 		}else{
